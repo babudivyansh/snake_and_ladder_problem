@@ -17,7 +17,7 @@ def single_ply_at_pos_0():
 
         Parameter: None
 
-        Return: 0 position
+        Return: position 0
     """
 
     return 0
