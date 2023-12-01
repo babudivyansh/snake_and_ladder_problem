@@ -33,9 +33,25 @@ def roll_die_1_to_6():
         Return: position result
     """
     result = random.randint(1, 6)
+    play(result)
     return result
 
 
+def play(result):
+    position = 0
+    dice_num = random.randint(0, 2)
+    if dice_num == 0:
+        print("No play the player stays on the same position")
+    elif dice_num == 1:
+        position += dice_num
+        print(f"Player moves ahead by: {dice_num}")
+    else:
+        position -= dice_num
+        print(f"Player moves behind by: {dice_num}")
+    print(f"Current Position is:{position}")
+
+
 if __name__ == '__main__':
-    print(single_ply_at_pos_0())
-    print(roll_die_1_to_6())
+    # print(single_ply_at_pos_0())
+    # print(roll_die_1_to_6())
+    roll_die_1_to_6()
