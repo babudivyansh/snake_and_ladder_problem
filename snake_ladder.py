@@ -1,11 +1,11 @@
 """
 @Author: Divyansh Babu
 
-@Date: 2021-12-04 12:15
+@Date: 2021-12-04 14:42
 
 @Last Modified by: Divyansh Babu
 
-@Last Modified time: 2021-12-04 12:15
+@Last Modified time: 2021-12-04 14:42
 
 @Title : Snake and Ladder Problem.
 """
@@ -38,32 +38,35 @@ def roll_die_1_to_6():
 
 def play():
     """
-        Description: implementation of function for repeat till the plyer reaches the winning position.
+        Description: implementation of function for repeat till the plyer reaches the winning position and every move is
+        displayed.
 
         Parameter: None
 
         Return: None
     """
     position = 0
+    move = 0
     while position <= 100:
+        move += 1
         player_opt = random.randint(0, 2)
         dice_vlu = roll_die_1_to_6()
         if player_opt == 0:
             print("If not playing then player stays at same position")
-        elif player_opt == 1:
+        elif player_opt == 2:
             position += dice_vlu
             print(f"Player moves ahead by: {dice_vlu}")
             if position > 100:
                 position -= dice_vlu
             elif position == 100:
-                print("Player wins!!")
+                print(f"After {move} move Player Wins!!")
                 break
-        elif player_opt == 2:
+        elif player_opt == 1:
             position -= dice_vlu
             print(f"Player moves behind by: {dice_vlu}")
             if position < 0:
                 position = 0
-        print(f"Current Position is:{position}")
+        print(f"Current Position is:{position} on move:{move}")
 
 
 if __name__ == '__main__':
