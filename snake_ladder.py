@@ -1,11 +1,11 @@
 """
 @Author: Divyansh Babu
 
-@Date: 2021-12-01 12:30
+@Date: 2021-12-04 12:15
 
 @Last Modified by: Divyansh Babu
 
-@Last Modified time: 2021-12-01 12:30
+@Last Modified time: 2021-12-04 12:15
 
 @Title : Snake and Ladder Problem.
 """
@@ -30,28 +30,36 @@ def roll_die_1_to_6():
 
         Parameter: None
 
-        Return: position result
+        Return: Random number for die.
     """
-    result = random.randint(1, 6)
-    play(result)
-    return result
+
+    return random.randint(1, 6)
 
 
-def play(result):
+def play():
+    """
+        Description: implementation of function for repeat till the plyer reaches the winning position.
+
+        Parameter: None
+
+        Return: None
+    """
     position = 0
-    dice_num = random.randint(0, 2)
-    if dice_num == 0:
-        print("No play the player stays on the same position")
-    elif dice_num == 1:
-        position += dice_num
-        print(f"Player moves ahead by: {dice_num}")
-    else:
-        position -= dice_num
-        print(f"Player moves behind by: {dice_num}")
-    print(f"Current Position is:{position}")
+    while position <= 100:
+        player_opt = random.randint(0, 2)
+        dice_vlu = roll_die_1_to_6()
+        if player_opt == 0:
+            print("If not playing then player stays at same position")
+        elif player_opt == 1:
+            position += dice_vlu
+            print(f"Player moves ahead by: {dice_vlu}")
+        elif player_opt == 2:
+            position -= dice_vlu
+            print(f"Player moves behind by: {dice_vlu}")
+            if position < 0:
+                position = 0
+        print(f"Current Position is:{position}")
 
 
 if __name__ == '__main__':
-    # print(single_ply_at_pos_0())
-    # print(roll_die_1_to_6())
-    roll_die_1_to_6()
+    play()
