@@ -53,6 +53,11 @@ def play():
         elif player_opt == 1:
             position += dice_vlu
             print(f"Player moves ahead by: {dice_vlu}")
+            if position > 100:
+                position -= dice_vlu
+            elif position == 100:
+                print("Player wins!!")
+                break
         elif player_opt == 2:
             position -= dice_vlu
             print(f"Player moves behind by: {dice_vlu}")
