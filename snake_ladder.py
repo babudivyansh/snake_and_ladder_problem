@@ -1,11 +1,11 @@
 """
 @Author: Divyansh Babu
 
-@Date: 2021-12-04 14:42
+@Date: 2021-12-05 11:33
 
 @Last Modified by: Divyansh Babu
 
-@Last Modified time: 2021-12-04 14:42
+@Last Modified time: 2021-12-05 11:33
 
 @Title : Snake and Ladder Problem.
 """
@@ -43,31 +43,65 @@ def play():
 
         Parameter: None
 
+        Return: Dice value(int type)
+    """
+    player_opt = random.randint(0, 2)
+    dice_vlu = roll_die_1_to_6()
+    if player_opt == 1:  # Ladder
+        return dice_vlu
+    elif player_opt == 2:  # Snake
+        return -dice_vlu
+    else:  # no play
+        return 0
+
+
+def two_player():
+    """
+        Description: implementation of function to play the game with two player.
+
+        Parameter: None
+
         Return: None
     """
-    position = 0
-    move = 0
-    while position <= 100:
-        move += 1
-        player_opt = random.randint(0, 2)
-        dice_vlu = roll_die_1_to_6()
-        if player_opt == 0:
-            print("If not playing then player stays at same position")
-        elif player_opt == 2:
-            position += dice_vlu
-            print(f"Player moves ahead by: {dice_vlu}")
-            if position > 100:
-                position -= dice_vlu
-            elif position == 100:
-                print(f"After {move} move Player Wins!!")
-                break
-        elif player_opt == 1:
-            position -= dice_vlu
-            print(f"Player moves behind by: {dice_vlu}")
-            if position < 0:
-                position = 0
-        print(f"Current Position is:{position} on move:{move}")
+    player_pos1 = 0
+    player_pos2 = 0
+    option = 1
+    while player_pos1 < 100 and player_pos2 < 100:
+        match option:
+            case 1:
+                dice = play()
+                if dice > 0:
+                    if player_pos1 + dice > 100:
+                        pass
+                    else:
+                        player_pos1 += dice
+                    option = 1
+                    continue
+                else:
+                    player_pos1 += dice
+                    if player_pos1 < 0:
+                        player_pos1 = 0
+                    option = 2
+            case 2:
+                dice1 = play()
+                if dice1 > 0:
+                    if player_pos2 + dice1 > 100:
+                        pass
+                    else:
+                        player_pos2 += dice1
+                    option = 2
+                else:
+                    player_pos2 += dice1
+                    if player_pos2 < 0:
+                        player_pos2 = 0
+                    option = 1
+        print(f"player 1 position is: {player_pos1}\t\tplayer 2 position is: {player_pos2}")
+
+    if player_pos1 == 100:
+        print(f"Player 1 is win!! at position {player_pos1}")
+    else:
+        print(f"Player 2 is win!! at position {player_pos2}")
 
 
 if __name__ == '__main__':
-    play()
+    two_player()
